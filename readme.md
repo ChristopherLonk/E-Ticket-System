@@ -1,10 +1,10 @@
-#Requirement
+# Requirement
     • Composer https://getcomposer.org/
     • MySQL / MariaDB
     • Apache / Nginx
     • Xdebug https://xdebug.org/
-#Installation
-##Install the Project
+# Installation
+## Install the Project
     1. Download the Project and Unzip the File in your Web root
     2. Open the Terminal or CMD and Navigate to the Project
         1. composer update
@@ -20,7 +20,7 @@
         2. CMD: vendor\bin\phpunit
         3. If your output equal the Pictures then is it Correct and you can work with it.
 ![phpunit](public/pic/phpunit_terminal.png "phpunit")
-#MySQL / MariaDB
+# MySQL / MariaDB
     1. First way
         1. Start the Database
         2. Create a new Schema ticket
@@ -32,7 +32,7 @@
         3. DB_DATABASE= [Your Database]
         4. DB_USERNAME= [Your User]
         5. DB_PASSWORD= [Your Password]
-#Introduction
+# Introduction
 This user manual is for all users who want to get a new Ticket System for Scrum and Kanban.
 In the Pictures is a Blue border click on it to follow a Link to this View.
 
