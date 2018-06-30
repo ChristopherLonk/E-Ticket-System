@@ -74,6 +74,7 @@ By new User give it four Input Fields and one Select field. In the select field 
 
 ## Edit User
 The form edit user is for update a User.
+
 ![edit user](public/pic/admin_edit_user.png "edit user")
 
 ## Delete User
