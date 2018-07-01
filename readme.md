@@ -1,42 +1,60 @@
 # Requirement
-    • Composer https://getcomposer.org/
-    • MySQL / MariaDB
-    • Apache / Nginx
-    • Xdebug https://xdebug.org/
+- [Composer](https://getcomposer.org/)
+- MySQL / MariaDB
+- Apache / Nginx
+- [Xdebug](https://xdebug.org/)
+
 # Installation
-## Install the Project
-    1. Download the Project and Unzip the File in your Web root
-    2. Open the Terminal or CMD and Navigate to the Project
-        1. composer update
-    1. php artisan migrate:fresh
-    2. php artisan db:seed
-    3. For Developer
-        1. php artisan serve
-        2. Open your Browser and go to localhost
-    4. For Live Server
-        1. Follow the Instruction on Server Configuration for Apache or Nginx
-    5. Check with Terminal or CMD in your Root Directory with the Command
-        1. Terminal: vendor/bin/phpunit
-        2. CMD: vendor\bin\phpunit
-        3. If your output equal the Pictures then is it Correct and you can work with it.
+## Install the Project        
+- Copied the Project in your Web root Directory.
+- Open the Terminal and Navigate to the Project.
+  - `composer update`
+  - `cp .env.example .env`
+
+
+## MySQL / MariaDB
+Start the Database
+
+### First way
+- `CREATE DATABASE ticket`
+- `CREATE USER 'ticket'@'localhost' IDENTIFIED BY '2QJtitPkuRY3fz7s';`
+- `GRANT ALL PRIVILEGES ON ticket . * TO 'ticket'@'localhost';`
+- `FLUSH PRIVILEGES;`
+
+### Second way
+#### Editor
+- Open the File .env with a Editor and look at the entries.
+- `DB_DATABASE= [Your Database]`
+- `DB_USERNAME= [Your User]`
+- `DB_PASSWORD= [Your Password]`
+
+#### Database
+- `CREATE DATABASE [Your Database]`
+- `CREATE USER '[Your User]'@'localhost' IDENTIFIED BY '[Your Password]';`
+- `GRANT ALL PRIVILEGES ON [Your Database] . * TO '[Your User]'@'localhost';`
+- `FLUSH PRIVILEGES;`
+
+## Terminal
+### Open the Terminal and Navigate to the Project.
+  - `php artisan migrate:fresh`
+  - `php artisan db:seed`
+
+### For Developer
+- `php artisan serve`
+- Open your Browser and go to [localhost:8000](http://localhost:8000)
+### For Live Server
+- Follow the [Instruction](https://laravel.com/docs/5.6#web-server-configuration) on Server Configuration for Apache or Nginx
+
+
+## Check the Project with PhpUnit
+- `vendor/bin/phpunit`
+- you only see points this is corect and you can start.
 
 ![phpunit](public/pic/phpunit_terminal.png "phpunit")
 
-# MySQL / MariaDB
-    1. First way
-        1. Start the Database
-        2. Create a new Schema ticket
-        3. CREATE DATABASE ticket
-        4. Create a new User ticket with password 2QJtitPkuRY3fz7s
-    2. Second way
-        1. Start your Database and Create your Schema
-        2. In the File .env give at three entries
-        3. DB_DATABASE= [Your Database]
-        4. DB_USERNAME= [Your User]
-        5. DB_PASSWORD= [Your Password]
-# Introduction
-This user manual is for all users who want to get a new Ticket System for Scrum and Kanban.
-In the Pictures is a Blue border click on it to follow a Link to this View.
+
+# Guide
+This user Guide is for all users who want to get a new Ticket System for Scrum and Kanban.
 
 ## No User Authenticate
 In the Pictures is a Navigation bar. You can navigate to Home and Login Site.
