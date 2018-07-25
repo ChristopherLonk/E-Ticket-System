@@ -96,7 +96,7 @@ Start the Database
 
 ## Check the Project with PhpUnit
 - `vendor/bin/phpunit`
-- you only see points this is corect and you can start.
+- you only see points this is correct and you can start.
 
 ![phpunit](public/pic/phpunit_terminal.png "phpunit")
 
