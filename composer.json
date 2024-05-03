@@ -7,21 +7,21 @@
     "require": {
         "php": "^7.2",
         "components/jqueryui": "^1.12",
-        "facade/ignition": "^2.0",
+        "facade/ignition": "^2.3.6",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "7.0.*",
+        "laravel/framework": "^8.0",
         "laravel/helpers": "^1.7",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0",
+        "laravel/ui": "^3.0",
         "safaeean/zizaco-entrust-laravel-7.0": "1.9.6",
-        "se/selenium-server-standalone": "^3.12",
-        "tijsverkoyen/css-to-inline-styles": "^2.2.2"
+        "se/selenium-server-standalone": "^3.12"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^4.1"
+        "nunomaduro/collision": "^5.0",
+        "guzzlehttp/guzzle": "^7.0.1"
     },
     "autoload": {
         "classmap": [
