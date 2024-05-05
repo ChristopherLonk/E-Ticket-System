@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Mindscms\Entrust\Traits\EntrustUserTrait;
 use App\RoleUser;
 
 class User extends Authenticatable

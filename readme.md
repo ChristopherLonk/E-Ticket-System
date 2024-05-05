@@ -55,36 +55,21 @@
 ## Install the Project        
 - Copied the Project in your Web root Directory.
 - Open the Terminal and Navigate to the Project.
-  - `composer update`
+  - `composer install`
   - `cp .env.example .env`
 
 
-## MySQL / MariaDB
-Start the Database
-
-### First way
-- `CREATE DATABASE ticket`
-- `CREATE USER 'ticket'@'localhost' IDENTIFIED BY '2QJtitPkuRY3fz7s';`
-- `GRANT ALL PRIVILEGES ON ticket . * TO 'ticket'@'localhost';`
-- `FLUSH PRIVILEGES;`
-
-### Second way
-#### Editor
+## ENV
 - Open the File .env with a Editor and look at the entries.
 - `DB_DATABASE= [Your Database]`
 - `DB_USERNAME= [Your User]`
 - `DB_PASSWORD= [Your Password]`
 
-#### Database
-- `CREATE DATABASE [Your Database]`
-- `CREATE USER '[Your User]'@'localhost' IDENTIFIED BY '[Your Password]';`
-- `GRANT ALL PRIVILEGES ON [Your Database] . * TO '[Your User]'@'localhost';`
-- `FLUSH PRIVILEGES;`
-
 ## Terminal
 ### Navigate to Project
-  - `php artisan migrate:fresh`
-  - `php artisan db:seed`
+  - sh install.sh
+This shell script create a database, user and privileges from the .env file.
+After the creation run migrate:fresh db:seed and the unit test.
 
 ### For Developer
 - `php artisan serve`
