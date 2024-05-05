@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Zizaco\Entrust\EntrustRole;
+use mindscms\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
-    
+
 }
