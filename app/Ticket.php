@@ -21,28 +21,6 @@ class Ticket extends Model
     protected $fillable = ['name', 'description', 'project_id', 'created_from', 'status', 'storyPoints', 'priority','ext_id', 'sprint_id'];
 
     /**
-     * read enum give all status from the colum in Tickets table back
-     * @param  string $column
-     * @return array|bool
-     */
-    static function readEnum(string $column){
-        try {
-            $type = DB::select(DB::raw("SHOW COLUMNS FROM ticket WHERE Field = '{$column}'"))[0]->Type ;
-            preg_match('/^enum\((.*)\)$/', $type, $matches);
-            $enum = array();
-            foreach( explode(',', $matches[1]) as $value )
-            {
-              $v = trim( $value, "'" );
-              $enum = array_add($enum, $v, $v);
-            }
-            return $enum;
-        } catch (\Exception $e) {
-            return false;
-        }
-
-    }
-
-    /**
      * Delete all Ticket by the Project id
      * @param  int $id
      * @return void

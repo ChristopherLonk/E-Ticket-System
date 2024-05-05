@@ -35,9 +35,6 @@ class RoleUser extends Model
      * @return void
      */
     static function allRoleDeleteByUserId(int $id){
-        $roles = Parent::where('user_id', $id)->get();
-        foreach ($roles as $key => $role) {
-            $role->delete();
-        }
+        $roles = Parent::where('user_id', $id)->delete();
     }
 }

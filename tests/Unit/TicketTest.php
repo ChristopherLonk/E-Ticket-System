@@ -14,20 +14,6 @@ use App\User;
 class TicketTest extends TestCase {
 
     /**
-     * If check read enum fields by right Field and by wrong Field
-     * @return void
-     */
-    public function testReadEnum() {
-        $enum = Ticket::readEnum('prioritys');
-
-        $this->assertFalse($enum);
-
-        $enum = Ticket::readEnum('priority');
-        $priority = ['Low' => 'Low', 'Normal' => 'Normal', 'High' => 'High', 'Urgent' => 'Urgent'];
-        $this->assertEquals($enum, $priority);
-    }
-
-    /**
      * If check all active Tickets
      * @return void
      */

@@ -30,7 +30,7 @@ class ProjectTest extends TestCase {
     /**
      * setup is the construct method and is fill all Variable with the right Opject
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $role = Role::where('name', 'Teamleader')->first();
@@ -171,7 +171,8 @@ class ProjectTest extends TestCase {
     /**
      * tearDown is the destruct method and delete all Variable
      */
-    public function tearDown(){
+    public function tearDown(): void
+    {
         $this->project->delete();
         $this->user->delete();
     }

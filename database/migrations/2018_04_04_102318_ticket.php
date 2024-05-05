@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use App\Enum\Priority;
+use App\Enum\Status;
+use App\Enum\StoryPoints;
+
 class Ticket extends Migration {
 
     /**
@@ -21,9 +25,9 @@ class Ticket extends Migration {
             $table->string('name');
             $table->integer('is_delete')->default(NULL)->nullable();
             $table->longText('description');
-            $table->enum('status', ['backlog', 'toDo', 'barrier', 'inProgress', 'codeReview', 'done']);
-            $table->enum('storyPoints', ['0', '1', '2', '3', '5', '8', '13', '20', '40', '100']);
-            $table->enum('priority', ['Low', 'Normal', 'High', 'Urgent']);
+            $table->enum('status', Status::getEnum());
+            $table->enum('storyPoints', StoryPoints::getEnum());
+            $table->enum('priority', Priority::getEnum());
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('created_from')->references('id')->on('users');

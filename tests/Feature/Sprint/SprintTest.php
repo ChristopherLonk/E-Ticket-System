@@ -38,7 +38,8 @@ class SprintTest extends TestCase {
     /**
      * setup is the construct method and is fill all Variable with the right Opject
      */
-    public function setup(){
+    public function setup(): void
+    {
         parent::setUp();
         $role = Role::where('name', 'Teamleader')->first();
         $this->user = factory(\App\User::class)->make();
@@ -193,7 +194,8 @@ class SprintTest extends TestCase {
     /**
      * tearDown is the destruct method and delete all Variable
      */
-    public function tearDown(){
+    public function tearDown(): void
+    {
         $this->sprint->delete();
         $this->project->delete();
         $this->user->delete();

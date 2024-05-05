@@ -25,7 +25,8 @@ class DashboardTest extends TestCase
     /**
      * setup is the construct method and is fill all Variable with the right Opject
      */
-    public function setup (){
+    public function setup (): void
+    {
         Parent::setup();
 
         $role = Role::where('name', 'User')->first();
@@ -263,7 +264,7 @@ class DashboardTest extends TestCase
     /**
      * tearDown is the destruct method and delete all Variable
      */
-    public function tearDown(){
+    public function tearDown(): void{
         $this->user->delete();
     }
 }

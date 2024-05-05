@@ -6,6 +6,9 @@ use App\Ticket;
 use App\Project;
 use App\Sprint;
 use App\Tools;
+use App\Enum\Priority;
+use App\Enum\Status;
+use App\Enum\StoryPoints;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketEditRequest;
@@ -66,9 +69,9 @@ class TicketController extends Controller {
      */
     public function editGet(string $extId) {
         return view('layouts/ticket/edit', [
-            'storyPoints' => Ticket::readEnum('storyPoints'),
-            'stati' => Ticket::readEnum('status'),
-            'priorities' => Ticket::readEnum('priority'),
+            'storyPoints' => StoryPoints::getEnum(),
+            'stati' => Status::getEnum(),
+            'priorities' => Priority::getEnum(),
             'ticket' => Ticket::where('ext_id',$extId)->first(),
             'projects' => Project::allActive()]);
     }

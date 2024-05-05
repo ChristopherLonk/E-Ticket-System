@@ -2,9 +2,9 @@
 
 namespace App;
 
-use mindscms\Entrust\EntrustRole;
+use Mindscms\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
-
+    protected $guarded = [];
 }
