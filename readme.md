@@ -59,9 +59,9 @@
 
 ## Terminal
 ### Navigate to Project
-  - sh install.sh
-This shell script create a database, user and privileges from the .env file.
-After the creation run migrate:fresh db:seed and the unit test and this is cheking the fomation of the php code.
+  - `sh install.sh`
+  - This shell script create a database, user and privileges from the .env file.
+  - After the creation run migrate:fresh db:seed and the unit test and this is cheking the fomation of the php code.
 
 ### For Developer
 - `php artisan serve`
