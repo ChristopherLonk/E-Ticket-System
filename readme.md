@@ -42,22 +42,14 @@
     - [Authenticate as User](#authenticate-as-user)
       - [Dashboard](#dashboard)
 
-
-
-
 # Requirement
 - [Composer](https://getcomposer.org/)
 - [MySQL](https://www.mysql.com/de/) / [MariaDB](https://mariadb.org/)
-- [Apache](https://httpd.apache.org/) / [Nginx](https://www.nginx.com/)
+- [Nginx](https://www.nginx.com/)
 - [Xdebug](https://xdebug.org/)
 
 # Installation
-## Install the Project        
-- Copied the Project in your Web root Directory.
-- Open the Terminal and Navigate to the Project.
-  - `composer install`
   - `cp .env.example .env`
-
 
 ## ENV
 - Open the File .env with a Editor and look at the entries.
@@ -69,21 +61,14 @@
 ### Navigate to Project
   - sh install.sh
 This shell script create a database, user and privileges from the .env file.
-After the creation run migrate:fresh db:seed and the unit test.
+After the creation run migrate:fresh db:seed and the unit test and this is cheking the fomation of the php code.
 
 ### For Developer
 - `php artisan serve`
 - Open your Browser and go to [localhost:8000](http://localhost:8000)
 
 ### For Live Server
-- Follow the [Instruction](https://laravel.com/docs/5.6#web-server-configuration) on Server Configuration for Apache or Nginx
-
-
-## Check the Project with PhpUnit
-- `vendor/bin/phpunit`
-- you only see points this is correct and you can start.
-
-![phpunit](public/pic/phpunit_terminal.png "phpunit")
+- Follow the [Instruction](https://laravel.com/docs/10.x/deployment#nginx) on Server Configuration for Nginx
 
 
 # Guide
