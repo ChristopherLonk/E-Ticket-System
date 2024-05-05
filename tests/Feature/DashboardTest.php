@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use App\Role;
 use App\User;
 use App\Project;
@@ -14,8 +13,6 @@ use App\Sprint;
 
 class DashboardTest extends TestCase
 {
-
-
     /**
      * $user is a User Object
      * @var App\User
@@ -25,9 +22,9 @@ class DashboardTest extends TestCase
     /**
      * setup is the construct method and is fill all Variable with the right Opject
      */
-    public function setup (): void
+    public function setup(): void
     {
-        Parent::setup();
+        parent::setup();
 
         $role = Role::where('name', 'User')->first();
         $user = factory(\App\User::class)->make();
@@ -64,7 +61,8 @@ class DashboardTest extends TestCase
      * Test the Ticket by Sprint id method from DashboardController with user and no user
      * @return void
      */
-    public function testTicketBySprintId(){
+    public function testTicketBySprintId()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();
@@ -109,14 +107,14 @@ class DashboardTest extends TestCase
         Ticket::deleteAllTicketsByProjectId($project->id);
         Sprint::deleteAllSprintsByProjectId($project->id);
         $project->delete();
-
     }
 
     /**
      * Test the Edit Status by Ticket Id method from DashboardController with user and no user
      * @return void
      */
-    public function testEditStatusByTicketId(){
+    public function testEditStatusByTicketId()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();
@@ -148,14 +146,14 @@ class DashboardTest extends TestCase
         Ticket::deleteAllTicketsByProjectId($project->id);
         Sprint::deleteAllSprintsByProjectId($project->id);
         $project->delete();
-
     }
 
     /**
      * Test the Details method from DashboardController with user and no user
      * @return void
      */
-    public function testDetails() {
+    public function testDetails()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();
@@ -224,7 +222,8 @@ class DashboardTest extends TestCase
      * Test the Project method from DashboardController with user and no user
      * @return void
      */
-    public function testProject(){
+    public function testProject()
+    {
         $project = factory(\App\Project::class)->make();
         $project->save();
         for ($i=0; $i < 10; $i++) {
@@ -234,13 +233,13 @@ class DashboardTest extends TestCase
             $ticket->save();
         }
         $tickets = [
-	            "backlog" => Ticket::where('project_id', $project->id)->where('status', 'backlog')->take(10)->orderBy('priority', 'desc')->get(),
-	            'toDo' => Ticket::where('project_id', $project->id)->where('status', 'toDo')->get(),
-	            'barrier' => Ticket::where('project_id', $project->id)->where('status', 'barrier')->get(),
-	            'inProgress' => Ticket::where('project_id', $project->id)->where('status', 'inProgress')->get(),
-	            'codeReview' => Ticket::where('project_id', $project->id)->where('status', 'codeReview')->get(),
-	            'done' => Ticket::where('project_id', $project->id)->where('status', 'done')->get()
-	        ];
+                "backlog" => Ticket::where('project_id', $project->id)->where('status', 'backlog')->take(10)->orderBy('priority', 'desc')->get(),
+                'toDo' => Ticket::where('project_id', $project->id)->where('status', 'toDo')->get(),
+                'barrier' => Ticket::where('project_id', $project->id)->where('status', 'barrier')->get(),
+                'inProgress' => Ticket::where('project_id', $project->id)->where('status', 'inProgress')->get(),
+                'codeReview' => Ticket::where('project_id', $project->id)->where('status', 'codeReview')->get(),
+                'done' => Ticket::where('project_id', $project->id)->where('status', 'done')->get()
+            ];
         $this->get("/dashboard/".$project->ext_id)
             ->assertStatus(302)
             ->assertRedirect('/login');
@@ -264,7 +263,8 @@ class DashboardTest extends TestCase
     /**
      * tearDown is the destruct method and delete all Variable
      */
-    public function tearDown(): void{
+    public function tearDown(): void
+    {
         $this->user->delete();
     }
 }

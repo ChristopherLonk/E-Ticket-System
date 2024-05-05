@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model {
-
+class Project extends Model
+{
     /**
      * The table associated with the model.
      *
@@ -24,23 +24,26 @@ class Project extends Model {
      * all active is search in Project table where is_delete = NULL
      * @return array
      */
-    static function allActive() {
-        return Parent::where('is_delete', NULL)->get();
+    static function allActive()
+    {
+        return parent::where('is_delete', null)->get();
     }
 
     /**
      * all scrum and active is search in Project table where is_delete = NULL and is method = scrum
      * @return array
      */
-    static function allScrumAndActive() {
-        return Parent::where('method', 'Scrum')->where('is_delete', NULL)->get();
+    static function allScrumAndActive()
+    {
+        return parent::where('method', 'Scrum')->where('is_delete', null)->get();
     }
 
     /**
      * Sprint give back all Sprints from the Project
      * @return App\Sprint
      */
-    public function sprint() {
+    public function sprint()
+    {
         return $this->hasMany('App\Sprint')->get();
     }
 
@@ -48,8 +51,8 @@ class Project extends Model {
      * Ticekt give back all Tickets from the Project
      * @return App\Ticket
      */
-    public function ticket() {
+    public function ticket()
+    {
         return $this->hasMany('App\Ticket')->get();
     }
-
 }

@@ -11,13 +11,14 @@ use App\Sprint;
 use App\Ticket;
 use App\User;
 
-class ProjectTest extends TestCase {
-
+class ProjectTest extends TestCase
+{
     /**
      * Count all tickets over the Model and over the database
      * @return void
      */
-    public function testAllActive() {
+    public function testAllActive()
+    {
         $projects = Project::allActive();
         $projectsTemp = Project::all();
         $count = 0;
@@ -33,7 +34,8 @@ class ProjectTest extends TestCase {
      * Count all Scrum and Aktive over the Model and over the database
      * @return void
      */
-    public function testScrumAndActive() {
+    public function testScrumAndActive()
+    {
         $projects = Project::allScrumAndActive();
         $projectsTemp = Project::all();
         $count = 0;
@@ -49,7 +51,8 @@ class ProjectTest extends TestCase {
      * Is check the SprintObject = $project->sprint()
      * @return void
      */
-    public function testSprint() {
+    public function testSprint()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();
@@ -72,7 +75,8 @@ class ProjectTest extends TestCase {
      * Is check the TicketObject = $project->ticket()
      * @return void
      */
-    public function testTicket() {
+    public function testTicket()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();

@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
-class UserController extends Controller {
-
+class UserController extends Controller
+{
     /**
      * Check if User Auth
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -25,7 +26,8 @@ class UserController extends Controller {
      * Give back the View with all User
      * @return \Illuminate\View\View
      */
-    public function index() {
+    public function index()
+    {
         return view('layouts/user/index', ['users' => User::all()]);
     }
 
@@ -33,7 +35,8 @@ class UserController extends Controller {
      * Give back the View
      * @return \Illuminate\View\View
      */
-    public function createGet() {
+    public function createGet()
+    {
         return view('layouts/user/create');
     }
     /**
@@ -41,10 +44,11 @@ class UserController extends Controller {
      * @param  UserRequest $request
      * @return \Illuminate\view\View  Get the view from the index method
      */
-    public function createPost(UserRequest $request) {
+    public function createPost(UserRequest $request)
+    {
         $randomByte = Tools::randomByte();
 
-        while(!empty(User::where('ext_id', $randomByte)->first())){
+        while (!empty(User::where('ext_id', $randomByte)->first())) {
             $randomByte = Tools::randomByte();
         }
 
@@ -69,8 +73,9 @@ class UserController extends Controller {
      * @param  string $extId extern id
      * @return \Illuminate\view\View
      */
-    public function editGet(string $extId) {
-        return view('layouts/user/edit', ['user' => User::where('ext_id',$extId)->first()]);
+    public function editGet(string $extId)
+    {
+        return view('layouts/user/edit', ['user' => User::where('ext_id', $extId)->first()]);
     }
 
     /**
@@ -79,7 +84,8 @@ class UserController extends Controller {
      * @param  UserEditRequest $request
      * @return \Illuminate\view\View  Get the view from the index method
      */
-    public function editPost(string $extId, UserEditRequest $request) {
+    public function editPost(string $extId, UserEditRequest $request)
+    {
         $user = User::where('ext_id', $extId)->first();
         if (!empty($request->input('name')) && !empty($request->input('email')) && !empty($request->input('role'))) {
             $user->name = $request->input('name');
@@ -105,9 +111,9 @@ class UserController extends Controller {
      * @param  string $extId
      * @return \Illuminate\view\View  Get the view from the index method
      */
-    public function delete(string $extId) {
-        User::where('ext_id',$extId)->delete();
+    public function delete(string $extId)
+    {
+        User::where('ext_id', $extId)->delete();
         return $this->index();
     }
-
 }

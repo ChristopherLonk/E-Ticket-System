@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Feature;
 
 use Tests\TestCase;
@@ -6,15 +7,14 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 use App\Project;
 use App\Sprint;
 use App\Ticket;
 use App\Role;
 use App\User;
 
-class ProjectTest extends TestCase {
-
+class ProjectTest extends TestCase
+{
     /**
      * $user is the UserObject
      * @var App\User
@@ -46,7 +46,8 @@ class ProjectTest extends TestCase {
      * Test the Create method from ProjectController with user and no user
      * @return void
      */
-    public function testCreateGet() {
+    public function testCreateGet()
+    {
         $this->get('/project/create')
             ->assertStatus(302)
             ->assertRedirect('/login');
@@ -63,7 +64,8 @@ class ProjectTest extends TestCase {
      * Test the delete method from ProjectController with user and no user
      * @return void
      */
-    public function testDeleteGet() {
+    public function testDeleteGet()
+    {
         $this->get("/project/delete/" . $this->project->ext_id)
             ->assertStatus(302)
             ->assertRedirect('/login');
@@ -77,7 +79,8 @@ class ProjectTest extends TestCase {
      * Test the delete method from ProjectController and delete all sprints  with user and no user
      * @return void
      */
-    public function testDeleteSprintsGet() {
+    public function testDeleteSprintsGet()
+    {
         for ($i=0; $i < 10; $i++) {
             $sprint = factory(\App\Sprint::class)->make();
             $sprint->project_id = $this->project->id;
@@ -99,7 +102,8 @@ class ProjectTest extends TestCase {
      * Test the delete method from ProjectController and delete all tickets  with user and no user
      * @return void
      */
-    public function testDeleteTicketsGet() {
+    public function testDeleteTicketsGet()
+    {
         for ($i=0; $i < 10; $i++) {
             $ticket = factory(\App\Ticket::class)->make();
             $ticket->project_id = $this->project->id;
@@ -114,14 +118,15 @@ class ProjectTest extends TestCase {
             ->get("/project/delete/" . $this->project->ext_id)
             ->assertSuccessful();
 
-        Ticket::deleteAllTicketsByProjectId( $this->project->id );
+        Ticket::deleteAllTicketsByProjectId($this->project->id);
     }
 
     /**
      * Test the edit method from ProjectController with user and no user
      * @return void
      */
-    public function testEditGet(){
+    public function testEditGet()
+    {
         $this->get('/project/edit/2')
             ->assertRedirect('/login');
 
@@ -136,7 +141,8 @@ class ProjectTest extends TestCase {
      * Test the create method from ProjectController with user and no user
      * @return void
      */
-    public function testCreatePost() {
+    public function testCreatePost()
+    {
         $this->json('POST', '/project/create', [
                 'name' => 'phpUnitProject5',
                 'method' => 'Kanban'
@@ -155,7 +161,8 @@ class ProjectTest extends TestCase {
      * Test the edit method from ProjectController with user and no user
      * @return void
      */
-    public function testEditPost() {
+    public function testEditPost()
+    {
         $this->json('POST', "/project/edit/".$this->project->ext_id, [
                 'name' => 'phpUnitProject8',
                 'method' => 'Kanban'

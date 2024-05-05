@@ -17,7 +17,8 @@ class StoryPoints
       '100'
     ];
 
-    public static function getEnum() {
+    public static function getEnum()
+    {
         return self::STORY_POINTS;
     }
 }

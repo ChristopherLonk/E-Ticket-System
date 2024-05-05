@@ -13,7 +13,8 @@ class Status
       'done'
     ];
 
-    public static function getEnum() {
+    public static function getEnum()
+    {
         return self::STATUS;
     }
 }

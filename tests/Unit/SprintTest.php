@@ -11,13 +11,14 @@ use App\Sprint;
 use App\Ticket;
 use App\User;
 
-class SprintTest extends TestCase {
-
+class SprintTest extends TestCase
+{
     /**
      * If check the SprintObject = Sprint::AllActive()
      * @return void
      */
-    public function testAllActive() {
+    public function testAllActive()
+    {
         $sprint = Sprint::allActive();
         $sprintsTemp = Sprint::all();
         $count = 0;
@@ -33,7 +34,8 @@ class SprintTest extends TestCase {
      * If check the ProjectObject = Project::find($project->id)
      * @return void
      */
-    public function testProject() {
+    public function testProject()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();
@@ -54,7 +56,8 @@ class SprintTest extends TestCase {
      * If check the TicketObject = Ticket::where('sprint_id', $ticket->sprint_id)->get()
      * @return void
      */
-    public function testTicket() {
+    public function testTicket()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();

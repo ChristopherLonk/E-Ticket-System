@@ -8,12 +8,13 @@ use App\Tools;
 use App\Http\Requests\SprintRequest;
 use App\Http\Requests\SprintEditRequest;
 
-class SprintController extends Controller {
-
+class SprintController extends Controller
+{
     /**
      * If the User auth
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -21,7 +22,8 @@ class SprintController extends Controller {
      * Give all Project where Scrum and activ to the View layouts/sprint/create
      * @return \Illuminate\View\View
      */
-    public function createGet() {
+    public function createGet()
+    {
         return view('layouts/sprint/create', ['projects' => Project::allScrumAndActive()]);
     }
 
@@ -30,13 +32,13 @@ class SprintController extends Controller {
      * @param \App\Http\Controller\Requests\SprintRequest $request
      * @return \Illuminate\Routing\Redirector
      */
-    public function createPost(SprintRequest $request) {
-        $project = Project::where('name', $request->input('project'))->where('method', 'Scrum')->where('is_delete', NULL)->first();
+    public function createPost(SprintRequest $request)
+    {
+        $project = Project::where('name', $request->input('project'))->where('method', 'Scrum')->where('is_delete', null)->first();
         if (!empty($project)) {
-
             $randomByte = Tools::randomByte();
 
-            while(!empty(Sprint::where('ext_id', $randomByte)->first())){
+            while (!empty(Sprint::where('ext_id', $randomByte)->first())) {
                 $randomByte = Tools::randomByte();
             }
 
@@ -59,7 +61,8 @@ class SprintController extends Controller {
      * @param string $extId
      * @return \Illuminate\View\View
      */
-    public function editGet(string $extId) {
+    public function editGet(string $extId)
+    {
         return view('layouts/sprint/edit', ['sprint' => Sprint::where('ext_id', $extId)->first(), 'projects' => Project::allScrumAndActive()]);
     }
 
@@ -69,8 +72,9 @@ class SprintController extends Controller {
      * @param  SprintEditRequest $request
      * @return \Illuminate\Routing\Redirector
      */
-    public function editPost(string $extId, SprintEditRequest $request) {
-        $project = Project::where('name', $request->input('project'))->where('method', 'Scrum')->where('is_delete', NULL)->first();
+    public function editPost(string $extId, SprintEditRequest $request)
+    {
+        $project = Project::where('name', $request->input('project'))->where('method', 'Scrum')->where('is_delete', null)->first();
         if (!empty($project)) {
             $data = [
                 'name' => $request->input('name'),
@@ -87,12 +91,13 @@ class SprintController extends Controller {
         }
     }
 
-	/**
+    /**
      * Is set the Flack is_delete from a Sprint and all Ticket from the Sprint
      * @param string $extId
      * @return \Illuminate\Routing\Redirector
      */
-    public function delete(string $extId) {
+    public function delete(string $extId)
+    {
         $sprint = Sprint::where('ext_id', $extId)->first();
 
         foreach ($sprint->ticket() as $key => $ticket) {
@@ -104,5 +109,4 @@ class SprintController extends Controller {
 
         return redirect('create');
     }
-
 }

@@ -17,7 +17,8 @@ class RoleUser extends Model
      * role give back all role from the RoleUser
      * @return App\Role
      */
-    public function role(){
+    public function role()
+    {
         return $this->hasMany('App\Role', 'id', 'role_id')->first();
     }
 
@@ -25,7 +26,8 @@ class RoleUser extends Model
      * user give back all user from the RoleUser
      * @return App\User
      */
-    public function user(){
+    public function user()
+    {
         return $this->hasMany('App\User', 'id', 'user_id')->get();
     }
 
@@ -34,7 +36,8 @@ class RoleUser extends Model
      * @param  int $id
      * @return void
      */
-    static function allRoleDeleteByUserId(int $id){
-        $roles = Parent::where('user_id', $id)->delete();
+    static function allRoleDeleteByUserId(int $id)
+    {
+        $roles = parent::where('user_id', $id)->delete();
     }
 }

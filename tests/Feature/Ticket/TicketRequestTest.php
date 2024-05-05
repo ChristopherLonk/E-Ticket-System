@@ -6,15 +6,14 @@ use App\Role;
 use App\User;
 use App\Project;
 use App\Ticket;
-
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class TicketRequestTest extends TestCase {
-
+class TicketRequestTest extends TestCase
+{
     /**
      * $user UserObject
      * @var App\User
@@ -47,7 +46,8 @@ class TicketRequestTest extends TestCase {
      * Test the RequestObject The field name
      * @return void
      */
-    public function testRequestTicket() {
+    public function testRequestTicket()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/ticket/create', [
                 'description' => 'phpunitDescription',
@@ -75,14 +75,15 @@ class TicketRequestTest extends TestCase {
                 'project' =>  $this->project->name,
             ])->assertStatus(422);
 
-        Ticket::where('name','phpunitTicket')->first()->delete();
+        Ticket::where('name', 'phpunitTicket')->first()->delete();
     }
 
     /**
      * Test the RequestObject The field descrition
      * @return void
      */
-    public function testRequestDescription() {
+    public function testRequestDescription()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', '/ticket/create', [
                 'name' => 'phpunitTicket',
@@ -94,7 +95,8 @@ class TicketRequestTest extends TestCase {
      * Test the RequestObject The field project
      * @return void
      */
-    public function testRequestProject() {
+    public function testRequestProject()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', '/ticket/create', [
                 'name' => 'phpunitTicket',

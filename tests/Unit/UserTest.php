@@ -11,8 +11,8 @@ use App\User;
 use App\RoleUser;
 use App\Role;
 
-class UserTest extends TestCase {
-
+class UserTest extends TestCase
+{
     /**
      * $user UserObject
      * @var App\User
@@ -37,7 +37,8 @@ class UserTest extends TestCase {
      * if check the Role User method in the User Model
      * @return void
      */
-    public function testRoleUser() {
+    public function testRoleUser()
+    {
         $roleUser = RoleUser::where('user_id', $this->user->id)->first();
         $roleUserTemp = $this->user->roleUser();
         $this->assertEquals($roleUser, $roleUserTemp);
@@ -50,5 +51,4 @@ class UserTest extends TestCase {
     {
         $this->user->delete();
     }
-
 }

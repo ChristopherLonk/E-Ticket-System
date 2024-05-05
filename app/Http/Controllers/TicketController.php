@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketEditRequest;
 
-class TicketController extends Controller {
-
+class TicketController extends Controller
+{
     /**
      * Check if User Auth
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -26,7 +27,8 @@ class TicketController extends Controller {
       * Give all Project activ to the View layouts/ticket/create
      * @return \Illuminate\View\View
      */
-    public function createGet() {
+    public function createGet()
+    {
         return view('layouts/ticket/create', ['projects' => Project::allActive()]);
     }
 
@@ -35,13 +37,13 @@ class TicketController extends Controller {
      * @param  TicketRequest $request
      * @return \Illuminate\Routing\Redirector
      */
-    public function createPost(TicketRequest $request) {
-        $project = Project::where('name', $request->input('project'))->where('is_delete', NULL)->first();
+    public function createPost(TicketRequest $request)
+    {
+        $project = Project::where('name', $request->input('project'))->where('is_delete', null)->first();
         if (!empty($project)) {
-
             $randomByte = Tools::randomByte();
 
-            while(!empty(Ticket::where('ext_id', $randomByte)->first())){
+            while (!empty(Ticket::where('ext_id', $randomByte)->first())) {
                 $randomByte = Tools::randomByte();
             }
 
@@ -67,12 +69,13 @@ class TicketController extends Controller {
      * @param  string $extId
      * @return \Illuminate\View\View
      */
-    public function editGet(string $extId) {
+    public function editGet(string $extId)
+    {
         return view('layouts/ticket/edit', [
             'storyPoints' => StoryPoints::getEnum(),
             'stati' => Status::getEnum(),
             'priorities' => Priority::getEnum(),
-            'ticket' => Ticket::where('ext_id',$extId)->first(),
+            'ticket' => Ticket::where('ext_id', $extId)->first(),
             'projects' => Project::allActive()]);
     }
 
@@ -83,13 +86,14 @@ class TicketController extends Controller {
      * @param string $extId
      * @return \Illuminate\Routing\Redirector
      */
-    public function editPost(TicketEditRequest $request, string $extId) {
-        $project = Project::where('name', $request->input('project'))->where('is_delete', NULL)->first();
-        $sprint = Sprint::where('name', $request->input('sprint'))->where('is_delete', NULL)->first();
-        if(!empty($sprint)){
+    public function editPost(TicketEditRequest $request, string $extId)
+    {
+        $project = Project::where('name', $request->input('project'))->where('is_delete', null)->first();
+        $sprint = Sprint::where('name', $request->input('sprint'))->where('is_delete', null)->first();
+        if (!empty($sprint)) {
             $sprint_id = $sprint->id;
-        }else{
-            $sprint_id = NULL;
+        } else {
+            $sprint_id = null;
         }
         if (!empty($project)) {
             $data = [
@@ -115,12 +119,12 @@ class TicketController extends Controller {
      * @param  string $extId
      * @return \Illuminate\Routing\Redirector
      */
-    public function delete(string $extId) {
-        $ticket = Ticket::where('ext_id',$extId)->first();
+    public function delete(string $extId)
+    {
+        $ticket = Ticket::where('ext_id', $extId)->first();
         $ticket->is_delete = 1;
         $ticket->save();
 
         return redirect('create');
     }
-
 }

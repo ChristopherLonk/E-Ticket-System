@@ -3,14 +3,15 @@
 use Illuminate\Database\Seeder;
 use App\Tools;
 
-class DatabaseSeeder extends Seeder {
-
+class DatabaseSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
@@ -128,5 +129,4 @@ class DatabaseSeeder extends Seeder {
             'role_id' => 1,
         ]);
     }
-
 }

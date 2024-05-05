@@ -7,12 +7,13 @@ use App\Tools;
 use App\Http\Requests\ProjectRequest;
 use App\Http\Requests\ProjectEditRequest;
 
-class ProjectController extends Controller {
-
+class ProjectController extends Controller
+{
     /**
      * If the User auth
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -20,7 +21,8 @@ class ProjectController extends Controller {
      * Give back the View layouts/project/create
      * @return \Illuminate\View\View
      */
-    public function createGet() {
+    public function createGet()
+    {
         return view('layouts/project/create');
     }
 
@@ -29,10 +31,11 @@ class ProjectController extends Controller {
      * @param \App\Http\Controller\Requests\ProjectRequest $request
      * @return \Illuminate\Routing\Redirector
      */
-    public function createPost(ProjectRequest $request) {
+    public function createPost(ProjectRequest $request)
+    {
         $randomByte = Tools::randomByte();
 
-        while(!empty(Project::where('ext_id', $randomByte)->first())){
+        while (!empty(Project::where('ext_id', $randomByte)->first())) {
             $randomByte = Tools::randomByte();
         }
 
@@ -52,8 +55,9 @@ class ProjectController extends Controller {
      * @param string $extId
      * @return \Illuminate\Routing\Redirector
      */
-    public function editPost(string $extId, ProjectEditRequest $request) {
-        $project = Project::where('ext_id',$extId)->first();
+    public function editPost(string $extId, ProjectEditRequest $request)
+    {
+        $project = Project::where('ext_id', $extId)->first();
         $project->fill($request->all());
         $project->save();
         return redirect('create');
@@ -64,8 +68,9 @@ class ProjectController extends Controller {
      * @param  string $extId
      * @return \Illuminate\View\View
      */
-    public function editGet(string $extId) {
-        return view('layouts/project/edit', ['project' => Project::where('ext_id',$extId)->first()]);
+    public function editGet(string $extId)
+    {
+        return view('layouts/project/edit', ['project' => Project::where('ext_id', $extId)->first()]);
     }
 
     /**
@@ -73,8 +78,9 @@ class ProjectController extends Controller {
      * @param string $extId
      * @return \Illuminate\Routing\Redirector
      */
-    public function delete(string $extId) {
-        $project = Project::where('ext_id',$extId)->first();
+    public function delete(string $extId)
+    {
+        $project = Project::where('ext_id', $extId)->first();
         foreach ($project->sprint() as $key => $sprint) {
             $sprint->is_delete = 1;
             $sprint->save();
@@ -88,5 +94,4 @@ class ProjectController extends Controller {
         $project->save();
         return redirect('create');
     }
-
 }

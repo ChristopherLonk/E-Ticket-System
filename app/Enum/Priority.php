@@ -11,7 +11,8 @@ class Priority
       'Urgent',
     ];
 
-    public static function getEnum() {
+    public static function getEnum()
+    {
         return self::PRIORITY;
     }
 }

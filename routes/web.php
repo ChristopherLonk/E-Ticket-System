@@ -24,7 +24,7 @@ Route::get('/dashboard', 'DashboardController@dashboard');
 Route::get("dashboard/api/edit/ticket/{extId}/status/{status_id}", ['uses' => 'DashboardController@editStatusByTicketId']);
 Route::get('dashboard/api/details/{extId}', ['uses' => 'DashboardController@details']);
 
-Route::group(['middleware' => ['role:admin']], function() {
+Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/user', 'UserController@index');
     Route::get('/user/create', 'UserController@createGet');
     Route::post('/user/create', 'UserController@createPost');
@@ -33,7 +33,7 @@ Route::group(['middleware' => ['role:admin']], function() {
     Route::get('/user/delete/{extId}', 'UserController@delete');
 });
 
-Route::group(['middleware' => ['role:teamleader']], function() {
+Route::group(['middleware' => ['role:teamleader']], function () {
     Route::get('/create', 'CreateController@create');
 
     Route::get('/project/create', 'ProjectController@createGet');

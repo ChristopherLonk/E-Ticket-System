@@ -1,6 +1,8 @@
 <?php
+
 use App\Tools;
 use Faker\Generator as Faker;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -15,9 +17,9 @@ $factory->define(App\Ticket::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->word,
-        'status' => $faker->numberBetween(1,6),
-        'storyPoints' => $faker->numberBetween(1,9),
-        'priority' => $faker->numberBetween(1,4),
+        'status' => $faker->numberBetween(1, 6),
+        'storyPoints' => $faker->numberBetween(1, 9),
+        'priority' => $faker->numberBetween(1, 4),
         'ext_id' => Tools::randomByte()
     ];
 });

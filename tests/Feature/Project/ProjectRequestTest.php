@@ -5,15 +5,14 @@ namespace Tests\Feature;
 use App\Role;
 use App\User;
 use App\Project;
-
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class ProjectRequestTest extends TestCase {
-
+class ProjectRequestTest extends TestCase
+{
     /**
      * user
      * @var App\User
@@ -36,7 +35,8 @@ class ProjectRequestTest extends TestCase {
      * Test the Request Object with the name
      * @return void
      */
-    public function testRequestName() {
+    public function testRequestName()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/project/create', [
                 'method' => 'Scrum'
@@ -62,14 +62,14 @@ class ProjectRequestTest extends TestCase {
             ])->assertStatus(422);
         $project = Project::where('name', 'phpUnitProject')->first();
         $project->delete();
-
     }
 
     /**
      * Test the Request Object with the method
      * @return void
      */
-    public function testRequestMethod() {
+    public function testRequestMethod()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/project/create', [
                 'name' => 'phpunit'

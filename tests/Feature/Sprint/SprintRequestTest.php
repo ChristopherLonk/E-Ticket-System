@@ -12,8 +12,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class SprintRequestTest extends TestCase {
-
+class SprintRequestTest extends TestCase
+{
     /**
      * $user is the UserObject
      * @var App\User
@@ -46,7 +46,8 @@ class SprintRequestTest extends TestCase {
      * Test the RequestObject the field name
      * @return void
      */
-    public function testRequestName() {
+    public function testRequestName()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/sprint/create', [
                 'from' => '2018-04-28 00:00:00',
@@ -77,14 +78,15 @@ class SprintRequestTest extends TestCase {
                 'to'   => '2018-04-28 00:00:00',
                 'project' => $this->project->name
             ])->assertStatus(422);
-        Sprint::where('name','SprintTest')->first()->delete();
+        Sprint::where('name', 'SprintTest')->first()->delete();
     }
 
     /**
      * Test the RequestObject The field From
      * @return void
      */
-    public function testRequestFrom() {
+    public function testRequestFrom()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/sprint/create', [
                 'name' => 'SprintTest',
@@ -113,7 +115,8 @@ class SprintRequestTest extends TestCase {
      * Test the RequestObject The field to
      * @return void
      */
-    public function testRequestTo() {
+    public function testRequestTo()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/sprint/create', [
                 'name' => 'SprintTest',
@@ -141,8 +144,8 @@ class SprintRequestTest extends TestCase {
     /**
      * tearDown is the destruct method and delete all Variable
      */
-      public function tearDown(): void
-        {
+    public function tearDown(): void
+    {
         $this->project->delete();
         $this->user->delete();
     }

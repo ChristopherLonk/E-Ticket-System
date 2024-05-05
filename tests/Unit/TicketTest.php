@@ -11,13 +11,14 @@ use App\Sprint;
 use App\Project;
 use App\User;
 
-class TicketTest extends TestCase {
-
+class TicketTest extends TestCase
+{
     /**
      * If check all active Tickets
      * @return void
      */
-    public function testAllActive() {
+    public function testAllActive()
+    {
         $tickets = Ticket::allActive();
         $ticketsTemp = Ticket::all();
         $count = 0;
@@ -33,7 +34,8 @@ class TicketTest extends TestCase {
      * if Check the Sprint method in a Ticket Model
      * @return void
      */
-    public function testSprint() {
+    public function testSprint()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Scrum';
         $project->save();
@@ -66,7 +68,8 @@ class TicketTest extends TestCase {
      * if check the Project method in the Ticket Model
      * @return void
      */
-    public function testProject() {
+    public function testProject()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Kanban';
         $project->save();
@@ -94,7 +97,8 @@ class TicketTest extends TestCase {
      * if check the User method in the Ticket Model
      * @return void
      */
-    public function testUser() {
+    public function testUser()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Kanban';
         $project->save();
@@ -121,7 +125,8 @@ class TicketTest extends TestCase {
      * if check the Create From method in the Ticket Model
      * @return void
      */
-    public function testCreateFrom() {
+    public function testCreateFrom()
+    {
         $project = factory(\App\Project::class)->make();
         $project->method = 'Kanban';
         $project->save();
@@ -142,7 +147,5 @@ class TicketTest extends TestCase {
         $ticket->delete();
         $user->delete();
         $project->delete();
-
     }
-
 }

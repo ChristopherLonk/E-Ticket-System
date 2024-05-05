@@ -7,16 +7,14 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 use App\Project;
 use App\Sprint;
 use App\Ticket;
-
 use App\Role;
 use App\User;
 
-class SprintTest extends TestCase {
-
+class SprintTest extends TestCase
+{
     /**
      * $user is a User Object
      * @var App\User
@@ -59,7 +57,8 @@ class SprintTest extends TestCase {
      * Test the Create method from SprintController with user and no user
      * @return void
      */
-    public function testCreateGet() {
+    public function testCreateGet()
+    {
         $this->get('/sprint/create')
             ->assertStatus(302)
             ->assertRedirect('/login');
@@ -78,7 +77,8 @@ class SprintTest extends TestCase {
      * Test the delete method from SprintController with user and no user
      * @return void
      */
-    public function testDeleteGet() {
+    public function testDeleteGet()
+    {
         $this->get("/sprint/delete/".$this->sprint->ext_id)
             ->assertRedirect('/login');
 
@@ -92,7 +92,8 @@ class SprintTest extends TestCase {
      * Test the delete method from SprintController and delete all Tickets with user and no user
      * @return void
      */
-    public function testDeleteTicketsGet() {
+    public function testDeleteTicketsGet()
+    {
         for ($i=0; $i < 10; $i++) {
             $ticket = factory(\App\Ticket::class)->make();
             $ticket->project_id = $this->project->id;
@@ -103,7 +104,8 @@ class SprintTest extends TestCase {
 
         $this->get("/sprint/delete/".$this->sprint->ext_id)
             ->assertStatus(302)
-            ->assertRedirect('/login');;
+            ->assertRedirect('/login');
+        ;
 
         $this->actingAs($this->user)
             ->followingRedirects()
@@ -117,7 +119,8 @@ class SprintTest extends TestCase {
      * Test the edit method from SprintController with user and no user
      * @return void
      */
-    public function testEditGet(){
+    public function testEditGet()
+    {
         $this->get('/sprint/edit/'.$this->sprint->ext_id)
             ->assertStatus(302)
             ->assertRedirect('/login');
@@ -132,7 +135,8 @@ class SprintTest extends TestCase {
      * Test the create method from SprintController with user and no user
      * @return void
      */
-    public function testCreatePost() {
+    public function testCreatePost()
+    {
         $this->json('POST', '/sprint/create', [
                 'name' => 'phpUnitSprint',
                 'from' => '2018-05-05 00:00:00',
@@ -163,7 +167,8 @@ class SprintTest extends TestCase {
      * Test the edit method from SprintController with user and no user
      * @return void
      */
-    public function testEditPost() {
+    public function testEditPost()
+    {
         $this->json('POST', "/sprint/edit/".$this->sprint->ext_id, [
                 'name' => 'phpUnitSprint',
                 'from' => '2018-05-05 00:00:00',

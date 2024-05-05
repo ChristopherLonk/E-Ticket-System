@@ -8,12 +8,13 @@ use App\Ticket;
 use App\Project;
 use App\Sprint;
 
-class DashboardController extends Controller {
-
+class DashboardController extends Controller
+{
     /**
      * If the User auth
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -21,7 +22,8 @@ class DashboardController extends Controller {
      * Give all Projects to the View
      * @return \Illuminate\View\View
      */
-    public function dashboard() {
+    public function dashboard()
+    {
 
         return view('layouts/dashboard/index', ['projects' => Project::allActive()]);
     }
@@ -31,8 +33,9 @@ class DashboardController extends Controller {
      * @param string $extId
      * @return \Illuminate\View\View
      */
-    public function details(string $extId ) {
-        return view('layouts/dashboard/details', ['ticket' => Ticket::where('ext_id',$extId)->first()]);
+    public function details(string $extId)
+    {
+        return view('layouts/dashboard/details', ['ticket' => Ticket::where('ext_id', $extId)->first()]);
     }
 
     /**
@@ -40,7 +43,8 @@ class DashboardController extends Controller {
      * @param string $extId
      * @return \Illuminate\View\View
      */
-    public function sprint(string $extId) {
+    public function sprint(string $extId)
+    {
         return view('layouts/dashboard/sprint', ['sprints' => Project::where('ext_id', $extId)->first()->sprint()]);
     }
 
@@ -49,8 +53,9 @@ class DashboardController extends Controller {
      * @param string $extId
      * @return \Illuminate\View\View
      */
-    public function ticketBySprintId(string $extId) {
-        $sprint = Sprint::where('ext_id',$extId)->first();
+    public function ticketBySprintId(string $extId)
+    {
+        $sprint = Sprint::where('ext_id', $extId)->first();
         $tickets = [
             'toDo' => Ticket::where('sprint_id', $sprint->id)->where('status', 'toDo')->get(),
             'barrier' => Ticket::where('sprint_id', $sprint->id)->where('status', 'barrier')->get(),
@@ -68,7 +73,8 @@ class DashboardController extends Controller {
      * @param int $statusId Status Id is 1 = backlog, 2 = toDo , 3 = barrier, 4 = inProgress, 5 = codeReview, 6 = done
      * @return int
      */
-    public function editStatusByTicketId(string $extId, int $statusId) {
+    public function editStatusByTicketId(string $extId, int $statusId)
+    {
         $ticket = Ticket::where('ext_id', $extId)->first();
         $ticket->user_id = Auth::id();
         $ticket->status = $statusId;
@@ -81,7 +87,8 @@ class DashboardController extends Controller {
       * @param string $extId
       * @return \Illuminate\View\View
       */
-    public function project(string $extId) {
+    public function project(string $extId)
+    {
         $project = Project::where('ext_id', $extId)->first();
         $tickets = [
             "backlog" => Ticket::where('project_id', $project->id)->where('status', 'backlog')->take(10)->orderBy('priority', 'desc')->get(),
@@ -93,5 +100,4 @@ class DashboardController extends Controller {
         ];
         return view('layouts/dashboard/project', ['tickets' => $tickets]);
     }
-
 }

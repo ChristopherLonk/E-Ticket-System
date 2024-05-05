@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use EntrustUserTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,7 +32,8 @@ class User extends Authenticatable
      * roleUser give one of RoleUser back from the User
      * @return App\RoleUser
      */
-    public function roleUser(){
+    public function roleUser()
+    {
         return $this->hasOne('App\RoleUser', 'user_id', 'id')->first();
     }
 }

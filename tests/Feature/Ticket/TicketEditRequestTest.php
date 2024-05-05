@@ -13,8 +13,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class TicketEditRequestTest extends TestCase {
-
+class TicketEditRequestTest extends TestCase
+{
     /**
      * $user UserObject
      * @var App\User
@@ -58,7 +58,8 @@ class TicketEditRequestTest extends TestCase {
      * Test the RequestObject The field name
      * @return void
      */
-    public function testRequestTicket() {
+    public function testRequestTicket()
+    {
         $this->actingAs($this->user)
             ->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
                 'description' => 'phpunitDescription',
@@ -88,14 +89,15 @@ class TicketEditRequestTest extends TestCase {
                 'project' => $this->project->name,
             ])->assertStatus(200);
 
-        Ticket::where('name','phpunitTicket1')->first()->delete();
+        Ticket::where('name', 'phpunitTicket1')->first()->delete();
     }
 
     /**
      * Test the RequestObject The field description
      * @return void
      */
-    public function testRequestDescription() {
+    public function testRequestDescription()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
                 'name' => 'phpunitTicket',
@@ -110,7 +112,8 @@ class TicketEditRequestTest extends TestCase {
      * Test the RequestObject The field status
      * @return void
      */
-    public function testRequestStatus() {
+    public function testRequestStatus()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
                 'name' => 'phpunitTicket',
@@ -126,7 +129,8 @@ class TicketEditRequestTest extends TestCase {
      * Test the RequestObject The field priority
      * @return void
      */
-    public function testRequestPriority() {
+    public function testRequestPriority()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
                 'name' => 'phpunitTicket',
@@ -141,7 +145,8 @@ class TicketEditRequestTest extends TestCase {
      * Test the RequestObject The field Story Points
      * @return void
      */
-    public function testRequestStoryPoints() {
+    public function testRequestStoryPoints()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
                 'name' => 'phpunitTicket',
@@ -166,7 +171,8 @@ class TicketEditRequestTest extends TestCase {
      * Test the RequestObject The field project
      * @return void
      */
-    public function testRequestProject() {
+    public function testRequestProject()
+    {
         $this->followingRedirects()->actingAs($this->user)
             ->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
                 'name' => 'phpunitTicket',

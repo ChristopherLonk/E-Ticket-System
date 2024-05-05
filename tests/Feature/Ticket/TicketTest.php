@@ -7,18 +7,14 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 use App\Project;
 use App\Sprint;
 use App\Ticket;
-
 use App\Role;
 use App\User;
 
-
-class TicketTest extends TestCase {
-
-
+class TicketTest extends TestCase
+{
     /**
      * $user is a User Object
      * @var App\User
@@ -72,7 +68,8 @@ class TicketTest extends TestCase {
      * Test the Create method from TicketController with user and no user
      * @return void
      */
-    public function testCreateGet() {
+    public function testCreateGet()
+    {
         $this->get('/ticket/create')
             ->assertStatus(302);
         $this->actingAs($this->user)
@@ -86,7 +83,8 @@ class TicketTest extends TestCase {
      * Test the Delete method from TicketController with user and no user
      * @return void
      */
-    public function testDeleteGet() {
+    public function testDeleteGet()
+    {
         $this->get("/ticket/delete/".$this->ticket->ext_id)
             ->assertRedirect('/login');
 
@@ -101,7 +99,8 @@ class TicketTest extends TestCase {
      * Test the Edit method from TicketController with user and no user
      * @return void
      */
-    public function testEditGet() {
+    public function testEditGet()
+    {
         $this->followingRedirects()
             ->get("/ticket/edit/".$this->ticket->ext_id)
             ->assertStatus(200)
@@ -119,7 +118,8 @@ class TicketTest extends TestCase {
      * Test the Create method from TicketController with user and no user
      * @return void
      */
-    public function testCreatePost() {
+    public function testCreatePost()
+    {
         $this->json('POST', '/ticket/create', [
                 'name' => 'phpUnitTicket',
                 'description' => 'phpUnitDescription',
@@ -147,7 +147,8 @@ class TicketTest extends TestCase {
      * Test the Edit method from TicketController with user and no user
      * @return void
      */
-    public function testEditPost() {
+    public function testEditPost()
+    {
         $this->json('POST', "/ticket/edit/".$this->ticket->ext_id, [
             'name' => 'phpUnitTicket',
             'description' => 'phpUnitDescription',

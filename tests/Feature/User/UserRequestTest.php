@@ -10,8 +10,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserRequestTest extends TestCase {
-
+class UserRequestTest extends TestCase
+{
     /**
      * $user UserObject
      * @var App\User
@@ -35,7 +35,8 @@ class UserRequestTest extends TestCase {
      * Test the RequestObject The field Email
      * @return void
      */
-    public function testRequestEmail() {
+    public function testRequestEmail()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/user/create', [
                 'name' => 'phpUnitUser',
@@ -79,14 +80,15 @@ class UserRequestTest extends TestCase {
                 'password_confirmation' => 'testtest',
                 'role' => 'User'
             ])->assertStatus(422);
-        User::where('email','test@test.de')->first()->delete();
+        User::where('email', 'test@test.de')->first()->delete();
     }
 
     /**
      * Test the RequestObject The field name
      * @return void
      */
-    public function testRequestName() {
+    public function testRequestName()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/user/create', [
                 'password' => 'testtest',
@@ -109,7 +111,8 @@ class UserRequestTest extends TestCase {
      * Test the RequestObject The field password
      * @return void
      */
-    public function testRequestPassword() {
+    public function testRequestPassword()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/user/create', [
                 'name' => 'testt',
@@ -132,7 +135,8 @@ class UserRequestTest extends TestCase {
      * Test the RequestObject The field passwordConfirmation
      * @return void
      */
-    public function testRequestPasswordConfirmation() {
+    public function testRequestPasswordConfirmation()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/user/create', [
                 'name' => 'testt',
@@ -155,7 +159,8 @@ class UserRequestTest extends TestCase {
      * Test the RequestObject The field Role
      * @return void
      */
-    public function testRequestRole() {
+    public function testRequestRole()
+    {
         $this->actingAs($this->user)
             ->json('POST', '/user/create', [
                 'name' => 'testt',
@@ -171,5 +176,4 @@ class UserRequestTest extends TestCase {
     {
         $this->user->delete();
     }
-
 }
