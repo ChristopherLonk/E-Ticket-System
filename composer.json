@@ -15,15 +15,16 @@
         "se/selenium-server-standalone": "^3.12"
     },
     "require-dev": {
+        "doctrine/dbal": "^3.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^6.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/passport": "^11.0",
-        "spatie/laravel-ignition": "^2.0",
-        "doctrine/dbal": "^3.0",
-        "laravel/sanctum": "^3.2"
+        "laravel/sanctum": "^3.2",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^6.1",
+        "phpunit/phpunit": "10",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "classmap": [
